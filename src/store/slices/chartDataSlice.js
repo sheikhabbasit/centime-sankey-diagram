@@ -11,6 +11,16 @@ const chartDataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
+    setError(state, action) {
+      state.error = action.payload;
+    },
+    addInitialData(state, action) {
+      const { id, incoming, outgoing, amount } = action.payload;
+      state.dataStreams.push({ id, incoming, outgoing, amount });
+    },
     addStream(state, action) {
       const { incoming, outgoing, amount } = action.payload;
       state.dataStreams.push({ id: randomizeID(), incoming, outgoing, amount });
@@ -34,5 +44,12 @@ const chartDataSlice = createSlice({
   },
 });
 
-export const { addStream, editStream, deleteStream } = chartDataSlice.actions;
+export const {
+  addStream,
+  editStream,
+  deleteStream,
+  setLoading,
+  setError,
+  addInitialData,
+} = chartDataSlice.actions;
 export default chartDataSlice.reducer;
