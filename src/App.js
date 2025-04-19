@@ -3,6 +3,7 @@ import ChartRepresentation from "./components/ChartRepresentation/ChartRepresent
 import Header from "./components/Header/Header";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Form from "./components/Form/Form";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div>
         <Header />
         <ChartRepresentation />
+        <Form />
       </div>
     </Provider>
   );

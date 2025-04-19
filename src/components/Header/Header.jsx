@@ -19,6 +19,7 @@ const Header = () => {
         <label>{t("language")}: </label>
         <select onChange={updateLanguage} defaultValue="en">
           <option value="en">English</option>
+          <option value="sp">Espanol</option>
         </select>
       </div>
     </header>

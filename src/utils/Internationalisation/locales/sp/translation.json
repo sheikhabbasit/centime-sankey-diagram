@@ -1,0 +1,13 @@
+{
+  "header": "Tablero financiero",
+  "language": "Idioma",
+  "incoming": "Entrante",
+  "outgoing": "Saliente",
+  "edit": "Editar",
+  "delete": "Eliminar",
+  "add": "Aadtir",
+  "income": "Ingreso",
+  "expenditure": "Gasto",
+  "source": "Fuente",
+  "spent_on": "Gastado en"
+}

@@ -27,5 +27,14 @@ export const useChartController = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  return { loading, t, dataStreams };
+  const chartData = [
+    ["Incoming", "Outgoing", "Amount"], // Header row
+    ...dataStreams.map((flow) => [
+      t(flow.incoming),
+      t(flow.outgoing),
+      flow.amount,
+    ]),
+  ];
+
+  return { loading, chartData };
 };
