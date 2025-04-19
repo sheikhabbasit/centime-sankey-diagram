@@ -7,6 +7,7 @@ import { addInitialData, setLoading } from "../../store/slices/chartDataSlice";
 export const useChartController = () => {
   const dispatch = useDispatch();
   const { dataStreams, loading } = useSelector((state) => state.data);
+
   const { t } = useTranslation();
   const { getChartData } = useChartModel();
 

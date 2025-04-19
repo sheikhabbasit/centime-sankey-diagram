@@ -1,4 +1,6 @@
 {
   "header": "Financial Dashboard",
-  "language": "Language"
+  "language": "Language",
+  "incoming": "Incoming",
+  "outgoing": "Outgoing"
 }

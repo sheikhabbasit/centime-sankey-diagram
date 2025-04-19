@@ -18,8 +18,7 @@ const chartDataSlice = createSlice({
       state.error = action.payload;
     },
     addInitialData(state, action) {
-      const { id, incoming, outgoing, amount } = action.payload;
-      state.dataStreams.push({ id, incoming, outgoing, amount });
+      state.dataStreams = action.payload;
     },
     addStream(state, action) {
       const { incoming, outgoing, amount } = action.payload;
