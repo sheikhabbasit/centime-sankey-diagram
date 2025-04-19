@@ -2,5 +2,12 @@
   "header": "Financial Dashboard",
   "language": "Language",
   "incoming": "Incoming",
-  "outgoing": "Outgoing"
+  "outgoing": "Outgoing",
+  "edit": "Edit",
+  "delete": "Delete",
+  "add": "Add",
+  "income": "Income",
+  "expenditure": "Expenditure",
+  "source": "Source",
+  "spent_on": "Spent on"
 }
