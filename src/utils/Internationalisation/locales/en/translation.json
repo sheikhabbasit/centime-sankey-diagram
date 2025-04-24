@@ -9,5 +9,7 @@
   "income": "Income",
   "expenditure": "Expenditure",
   "source": "Source",
-  "spent_on": "Spent on"
+  "spent_on": "Spent on",
+  "from": "From",
+  "to": "To"
 }

@@ -9,5 +9,7 @@
   "income": "Ingreso",
   "expenditure": "Gasto",
   "source": "Fuente",
-  "spent_on": "Gastado en"
+  "spent_on": "Gastado en",
+  "from": "De",
+  "to": "A"
 }

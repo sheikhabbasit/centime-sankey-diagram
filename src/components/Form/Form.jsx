@@ -55,7 +55,7 @@ const Form = () => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
-          placeholder={t("income")}
+          placeholder={t("from")}
           value={formData.incoming}
           onChange={(e) =>
             setFormData({ ...formData, incoming: e.target.value })
@@ -64,7 +64,7 @@ const Form = () => {
         />
         <input
           type="text"
-          placeholder={t("expenditure")}
+          placeholder={t("to")}
           value={formData.outgoing}
           onChange={(e) =>
             setFormData({ ...formData, outgoing: e.target.value })
