@@ -40,7 +40,7 @@ export const useFormController = () => {
     setFormData({
       id: flow.id,
       incoming: flow.incoming,
-      to: flow.to,
+      outgoing: flow.outgoing,
       amount: flow.amount,
     });
   };
