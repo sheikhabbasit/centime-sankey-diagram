@@ -74,6 +74,7 @@ const Form = () => {
         <input
           type="number"
           placeholder="Amount"
+          min={1}
           value={formData.amount}
           onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
           required
