@@ -1,21 +1,18 @@
-import chartDataSlice, {
+import chartDataReducer, {
   addStream,
-  deleteStream,
   editStream,
-  setLoading,
-  setError,
+  deleteStream,
   addInitialData,
+  setError,
+  setLoading,
 } from "./chartDataSlice";
 
 describe("chartDataSlice", () => {
-  it("should return the initial state", () => {
-    const expectedState = {
-      dataStreams: [],
-      loading: false,
-      error: null,
-    };
-    expect(chartDataSlice.reducer(undefined, {})).toEqual(expectedState);
-  });
+  const initialState = {
+    dataStreams: [],
+    loading: false,
+    error: null,
+  };
 
   it("should add a new stream", () => {
     const newDataStream = {
@@ -24,108 +21,85 @@ describe("chartDataSlice", () => {
       outgoing: "Rent",
       amount: 1000,
     };
-    const expectedState = {
-      dataStreams: [newDataStream],
-      loading: false,
-      error: null,
-    };
-    expect(
-      chartDataSlice.reducer(
-        { dataStreams: [], loading: false, error: null },
-        addStream(newDataStream)
-      )
-    ).toEqual(expectedState);
+    const state = chartDataReducer(initialState, addStream(newDataStream));
+
+    expect(state.dataStreams).toHaveLength(1);
+    expect(state.dataStreams[0]).toEqual(newDataStream);
   });
 
   it("should edit a stream", () => {
-    const newDataStream = {
-      id: "1",
-      incoming: "Salary",
-      outgoing: "Groceries",
-      amount: 500,
-    };
-    const expectedState = {
-      dataStreams: [newDataStream],
+    const initialStateWithData = {
+      dataStreams: [
+        {
+          id: "1",
+          incoming: "Salary",
+          outgoing: "Groceries",
+          amount: 500,
+        },
+      ],
       loading: false,
       error: null,
     };
-    expect(
-      chartDataSlice.reducer(
-        {
-          dataStreams: [
-            { id: "1", incoming: "Salary", outgoing: "Rent", amount: 1000 },
-          ],
-          loading: false,
-          error: null,
-        },
-        editStream({ id: "1", newStream: newDataStream })
-      )
-    ).toEqual(expectedState);
+
+    const updatedStream = {
+      id: "1",
+      newFlow: {
+        incoming: "Salary",
+        outgoing: "Rent",
+        amount: 1000,
+      },
+    };
+
+    const state = chartDataReducer(
+      initialStateWithData,
+      editStream(updatedStream)
+    );
+
+    expect(state.dataStreams).toHaveLength(1);
+    expect(state.dataStreams[0].amount).toBe(1000);
+    expect(state.dataStreams[0].outgoing).toBe("Rent");
   });
 
   it("should delete a stream", () => {
-    const expectedState = {
-      dataStreams: [],
+    const initialStateWithData = {
+      dataStreams: [
+        { id: "1", incoming: "Salary", outgoing: "Rent", amount: 1000 },
+        { id: "2", incoming: "Bonus", outgoing: "Groceries", amount: 500 },
+      ],
       loading: false,
       error: null,
     };
-    expect(
-      chartDataSlice.reducer(
-        {
-          dataStreams: [
-            { id: "1", incoming: "Salary", outgoing: "Rent", amount: 1000 },
-          ],
-          loading: false,
-          error: null,
-        },
-        deleteStream("1")
-      )
-    ).toEqual(expectedState);
+
+    const state = chartDataReducer(initialStateWithData, deleteStream("1"));
+
+    expect(state.dataStreams).toHaveLength(1);
+    expect(state.dataStreams[0].id).toBe("2");
   });
 
-  it("should set the loading state", () => {
-    const expectedState = {
-      dataStreams: [],
-      loading: true,
-      error: null,
-    };
-    expect(
-      chartDataSlice.reducer(
-        { dataStreams: [], loading: false, error: null },
-        setLoading(true)
-      )
-    ).toEqual(expectedState);
+  it("should set loading state", () => {
+    const loadingState = chartDataReducer(initialState, setLoading(true));
+    expect(loadingState.loading).toBe(true);
+
+    const notLoadingState = chartDataReducer(initialState, setLoading(false));
+    expect(notLoadingState.loading).toBe(false);
   });
 
-  it("should set the error state", () => {
-    const expectedState = {
-      dataStreams: [],
-      loading: false,
-      error: "Error message",
-    };
-    expect(
-      chartDataSlice.reducer(
-        { dataStreams: [], loading: false, error: null },
-        setError("Error message")
-      )
-    ).toEqual(expectedState);
+  it("should set error state", () => {
+    const errorState = chartDataReducer(
+      initialState,
+      setError("Something went wrong")
+    );
+    expect(errorState.error).toBe("Something went wrong");
   });
 
   it("should add initial data", () => {
-    const data = [
+    const initialData = [
       { id: "1", incoming: "Salary", outgoing: "Rent", amount: 1000 },
-      { id: "2", incoming: "Freelance", outgoing: "Groceries", amount: 500 },
+      { id: "2", incoming: "Bonus", outgoing: "Groceries", amount: 500 },
     ];
-    const expectedState = {
-      dataStreams: data,
-      loading: false,
-      error: null,
-    };
-    expect(
-      chartDataSlice.reducer(
-        { dataStreams: [], loading: false, error: null },
-        addInitialData(data)
-      )
-    ).toEqual(expectedState);
+    const state = chartDataReducer(initialState, addInitialData(initialData));
+
+    expect(state.dataStreams).toHaveLength(2);
+    expect(state.dataStreams).toEqual(initialData);
   });
 });

@@ -52,7 +52,7 @@ const Form = () => {
         ))}
       </ul>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form data-testid="form" onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
           placeholder={t("from")}

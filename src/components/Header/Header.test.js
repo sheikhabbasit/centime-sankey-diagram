@@ -31,14 +31,14 @@ describe("Header", () => {
   it("renders the language changer with default value", () => {
     render(<Header />);
     expect(screen.getByLabelText("language:")).toBeInTheDocument();
-    expect(screen.getByDisplayValue("en")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("English")).toBeInTheDocument();
   });
 
   it("calls updateLanguage function on language change", () => {
     render(<Header />);
     fireEvent.change(screen.getByRole("combobox"), { target: { value: "sp" } });
-    expect(mockUpdateLanguage).toHaveBeenCalledWith(
-      expect.objectContaining({ target: { value: "sp" } })
-    );
+
+    const event = mockUpdateLanguage.mock.calls[0][0];
+    expect(event.target.value).toBe("sp");
   });
 });

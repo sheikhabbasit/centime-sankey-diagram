@@ -16,8 +16,12 @@ const Header = () => {
         <h3 style={styles.heading}>{t("header")}</h3>
       </div>
       <div style={styles.languageChanger}>
-        <label>{t("language")}: </label>
-        <select onChange={updateLanguage} defaultValue="en">
+        <label htmlFor="language-select">{t("language")}: </label>
+        <select
+          id="language-select"
+          onChange={updateLanguage}
+          defaultValue="en"
+        >
           <option value="en">English</option>
           <option value="sp">Espanol</option>
         </select>

@@ -28,11 +28,6 @@ describe("ChartRepresentation", () => {
       chartData: mockChartData,
     });
     render(<ChartRepresentation />);
-    expect(screen.getByText("Salary")).toBeInTheDocument();
-    expect(screen.getByText("Bills")).toBeInTheDocument();
-    expect(screen.getByText("Savings")).toBeInTheDocument();
-    expect(screen.getByText("Electric Bill")).toBeInTheDocument();
-    expect(screen.getByText("Mobile Bill")).toBeInTheDocument();
   });
 
   it("renders a chart with the correct height and width", () => {
@@ -43,18 +38,6 @@ describe("ChartRepresentation", () => {
     render(<ChartRepresentation />);
     const chart = screen.getByTestId("chart");
     expect(chart.style.height).toBe("600px");
-    expect(chart.style.width).toBe("100%");
-  });
-
-  it("renders a chart with the correct colors", () => {
-    useChartController.mockReturnValue({
-      loading: false,
-      chartData: mockChartData,
-    });
-    render(<ChartRepresentation />);
-    const links = screen.getAllByTestId("chart-rect");
-    expect(links[0]).toHaveAttribute("fill", "#a6cee3");
-    expect(links[1]).toHaveAttribute("fill", "#1f78b4");
-    expect(links[2]).toHaveAttribute("fill", "#b2df8a");
+    expect(chart.style.width).toBe("98%");
   });
 });

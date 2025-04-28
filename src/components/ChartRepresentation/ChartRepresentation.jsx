@@ -7,14 +7,21 @@ function ChartRepresentation() {
   const { loading, chartData } = useChartController();
   if (loading) {
     return (
-      <div className={styles.chartContainer}>
+      <div
+        style={{ height: "600px", width: "98%" }}
+        className={styles.chartContainer}
+      >
         <p>Loading chart...</p>
       </div>
     );
   }
 
   return (
-    <div className={styles.chartContainer}>
+    <div
+      data-testid="chart"
+      style={{ height: "600px", width: "98%" }}
+      className={styles.chartContainer}
+    >
       <Chart
         chartType="Sankey"
         width="100%"

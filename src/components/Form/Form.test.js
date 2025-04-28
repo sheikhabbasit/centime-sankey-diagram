@@ -27,12 +27,12 @@ describe("Form", () => {
 
   it("renders a list of flows", () => {
     render(<Form />);
-    expect(screen.getByText("Income: Salary")).toBeInTheDocument();
-    expect(screen.getByText("Spent on: Rent")).toBeInTheDocument();
-    expect(screen.getByText("Amount: 1000")).toBeInTheDocument();
-    expect(screen.getByText("Income: Freelance")).toBeInTheDocument();
-    expect(screen.getByText("Spent on: Groceries")).toBeInTheDocument();
-    expect(screen.getByText("Amount: 500")).toBeInTheDocument();
+    expect(screen.getByText("Salary")).toBeInTheDocument();
+    expect(screen.getByText("Rent")).toBeInTheDocument();
+    expect(screen.getByText("1000")).toBeInTheDocument();
+    expect(screen.getByText("Freelance")).toBeInTheDocument();
+    expect(screen.getByText("Groceries")).toBeInTheDocument();
+    expect(screen.getByText("500")).toBeInTheDocument();
   });
 
   it("calls handleEdit and handleDelete when buttons are clicked", () => {
@@ -47,7 +47,7 @@ describe("Form", () => {
   it("calls handleSubmit when the form is submitted", () => {
     const { handleSubmit } = useFormController();
     render(<Form />);
-    fireEvent.submit(screen.getByRole("form"));
+    fireEvent.submit(screen.getByTestId("form"));
     expect(handleSubmit).toHaveBeenCalled();
   });
 });
