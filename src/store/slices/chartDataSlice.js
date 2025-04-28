@@ -25,14 +25,14 @@ const chartDataSlice = createSlice({
       state.dataStreams.push({ id: randomizeID(), incoming, outgoing, amount });
     },
     editStream(state, action) {
-      const { id, newStream } = action.payload;
+      const { id, ...newStream } = action.payload;
       const dataStreamIndex = state.dataStreams.findIndex(
         (item) => item.id === id
       );
       if (dataStreamIndex !== -1) {
         state.dataStreams[dataStreamIndex] = {
-          ...state.dataStreams[dataStreamIndex],
-          ...newStream,
+          id: id,
+          ...newStream.newFlow,
         };
       }
     },
